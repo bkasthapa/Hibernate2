@@ -14,15 +14,13 @@ public class Main {
 
 		CustomerRepository crs = (CustomerRepository) act.getBean("customerRepository");
 
-		CustomerEntity cen = new CustomerEntity();
+		System.out.println("Select by id = 2");				
+																			//update method
+		CustomerEntity c1 = crs.getCustomerById(2);
 
-		cen.setName("Shawn Mendes");
-		cen.setAddress("Fairfax, Virginia");
-		cen.setPhoneno("2345678908");
-		cen.setAppointmentno("12345");
-		cen.setEmailaddress("shawn@mendes.yahoo.com");
-	
-	crs.AutoCustomer(cen);
+		c1.setName("Diamond");
+
+		crs.update(c1);
 	}
 
 }
