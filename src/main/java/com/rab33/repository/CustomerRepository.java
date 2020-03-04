@@ -43,6 +43,9 @@ public class CustomerRepository {
 //		session.close(); // update ended
 //	}
 	
+	
+	
+																	//ByNameMethods,update
 //	public CustomerEntity getCustomerByName(String name) {
 //		
 //		Session session = sessionFactory.openSession();
@@ -57,29 +60,49 @@ public class CustomerRepository {
 //		
 //	}
 	
-	public CustomerEntity getByName(String pname) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+//	public CustomerEntity getByName(String pname) {
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//		
+//		Query query = session.createQuery("select ce from CustomerEntity ce where ce.name =:name");
+//		query.setParameter("name", pname);
+//
+//		List<CustomerEntity> customers = query.list();
+//
+//		session.getTransaction().commit();
+//		session.close();
+//
+//		return customers.get(0);
+//	}
+//
+//	
+//	public void update (CustomerEntity c) {
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//	
+//		session.merge(c);
+//		session.getTransaction().commit();
+//		session.close();
+//	}															//byNameMethod,UpdateFinished
+	
+	
+	public List<CustomerEntity> getByappointmentno(String appointmentno) {
+
+				Session session = sessionFactory.openSession();
+				session.beginTransaction();
+				Query q = session.createQuery("Select cus from CustomerEntity cus where cus.appointmentno = :Appointmentno");
+	
+				q.setParameter("Appointmentno", appointmentno);
 		
-		Query query = session.createQuery("select ce from CustomerEntity ce where ce.name =:name");
-		query.setParameter("name", pname);
-
-		List<CustomerEntity> customers = query.list();
-
-		session.getTransaction().commit();
-		session.close();
-
-		return customers.get(0);
-	}
-
-	
-	public void update (CustomerEntity c) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-	
-		session.merge(c);
-		session.getTransaction().commit();
-		session.close();
+				List<CustomerEntity> customers = q.list();
+		
+				session.getTransaction().commit();
+				session.close();
+		
+				
+				return customers;
+				
+		
 	}
 
 	public SessionFactory getSessionFactory() {
