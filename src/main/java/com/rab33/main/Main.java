@@ -14,13 +14,22 @@ public class Main {
 
 		CustomerRepository crs = (CustomerRepository) act.getBean("customerRepository");
 
-		System.out.println("Select by id = 2");				
-																			//update method
-		CustomerEntity c1 = crs.getCustomerById(2);
+//		System.out.println("Select by id = 2");				
+//																			//update method
+//		CustomerEntity c1 = crs.getCustomerById(2);
+//
+//		c1.setName("Diamond");
+//
+//		crs.update(c1);
+//	}
 
-		c1.setName("Diamond");
+		System.out.println("Select by name = Dipsa");
+
+		CustomerEntity c1 = crs.getByName("Dipsa");
+
+		c1.setName("Radha");
 
 		crs.update(c1);
-	}
 
+	}
 }

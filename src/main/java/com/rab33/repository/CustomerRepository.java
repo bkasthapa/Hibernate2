@@ -1,5 +1,8 @@
 package com.rab33.repository;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
@@ -19,29 +22,64 @@ public class CustomerRepository {
 		session.close();
 	}
 
-	public CustomerEntity getCustomerById(int id) { 			//update updated
+//	public CustomerEntity getCustomerById(int id) { // update updated
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//
+//		CustomerEntity ce = (CustomerEntity) session.get(CustomerEntity.class, id);
+//
+//		session.getTransaction().commit();
+//		session.close();
+//
+//		return ce;
+//	}
+//
+//	public void update(CustomerEntity c) {
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//
+//		session.merge(c);
+//		session.getTransaction().commit();
+//		session.close(); // update ended
+//	}
+	
+//	public CustomerEntity getCustomerByName(String name) {
+//		
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//		
+//		CustomerEntity ce = (CustomerEntity) session.get(CustomerEntity.class, name);
+//		
+//		session.getTransaction().commit();
+//		session.close();
+//		
+//		return ce;
+//		
+//	}
+	
+	public CustomerEntity getByName(String pname) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		
+		Query query = session.createQuery("select ce from CustomerEntity ce where ce.name =:name");
+		query.setParameter("name", pname);
 
-		
-		CustomerEntity ce= (CustomerEntity) session.get(CustomerEntity.class,id);
-		
-		//Query query = session.createQuery("select c from CustomerEntity c where c.id =:id");
-		//List<CustomerEntity> customer = query.list();
+		List<CustomerEntity> customers = query.list();
 
 		session.getTransaction().commit();
 		session.close();
 
-		return ce;
+		return customers.get(0);
 	}
 
-	public void update(CustomerEntity c) {
+	
+	public void update (CustomerEntity c) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-
+	
 		session.merge(c);
 		session.getTransaction().commit();
-		session.close();											//update ended
+		session.close();
 	}
 
 	public SessionFactory getSessionFactory() {
@@ -51,5 +89,5 @@ public class CustomerRepository {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 }
