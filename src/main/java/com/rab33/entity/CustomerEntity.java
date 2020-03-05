@@ -8,16 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "CustomerInfo")
 
 public class CustomerEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer customerid;
 
 	@Column(name = "name")
 	private String name;
+
+	@Column(name = "username")
+	private String username;
 
 	@Column(name = "address")
 	private String address;
@@ -25,18 +28,15 @@ public class CustomerEntity {
 	@Column(name = "phoneno")
 	private String phoneno;
 
-	@Column(name = "appointmentno")
-	private String appointmentno;
-
 	@Column(name = "emailaddress")
 	private String emailaddress;
 
-	public Integer getId() {
-		return id;
+	public Integer getCustomerid() {
+		return customerid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCustomerid(Integer customerid) {
+		this.customerid = customerid;
 	}
 
 	public String getName() {
@@ -45,6 +45,14 @@ public class CustomerEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getAddress() {
@@ -63,26 +71,12 @@ public class CustomerEntity {
 		this.phoneno = phoneno;
 	}
 
-	public String getAppointmentno() {
-		return appointmentno;
-	}
-
-	public void setAppointmentno(String appointmentno) {
-		this.appointmentno = appointmentno;
-	}
-
 	public String getEmailaddress() {
 		return emailaddress;
 	}
 
 	public void setEmailaddress(String emailaddress) {
 		this.emailaddress = emailaddress;
-	}
-
-	@Override
-	public String toString() {
-		return "CustomerEntity [id=" + id + ", name=" + name + ", address=" + address + ", phoneno=" + phoneno
-				+ ", appointmentno=" + appointmentno + ", emailaddress=" + emailaddress + "]";
 	}
 
 }

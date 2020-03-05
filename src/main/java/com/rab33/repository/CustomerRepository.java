@@ -1,8 +1,5 @@
 package com.rab33.repository;
 
-import java.util.List;
-
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
@@ -22,17 +19,17 @@ public class CustomerRepository {
 		session.close();
 	}
 
-//	public CustomerEntity getCustomerById(int id) { // update updated
-//		Session session = sessionFactory.openSession();
-//		session.beginTransaction();
-//
-//		CustomerEntity ce = (CustomerEntity) session.get(CustomerEntity.class, id);
-//
-//		session.getTransaction().commit();
-//		session.close();
-//
-//		return ce;
-//	}
+	public CustomerEntity getCustomerById(int id) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		CustomerEntity cn = (CustomerEntity) session.get(CustomerEntity.class, id);
+
+		session.getTransaction().commit();
+		session.close();
+
+		return cn;
+	}
 //
 //	public void update(CustomerEntity c) {
 //		Session session = sessionFactory.openSession();
@@ -42,10 +39,8 @@ public class CustomerRepository {
 //		session.getTransaction().commit();
 //		session.close(); // update ended
 //	}
-	
-	
-	
-																	//ByNameMethods,update
+
+	// ByNameMethods,update
 //	public CustomerEntity getCustomerByName(String name) {
 //		
 //		Session session = sessionFactory.openSession();
@@ -59,7 +54,7 @@ public class CustomerRepository {
 //		return ce;
 //		
 //	}
-	
+
 //	public CustomerEntity getByName(String pname) {
 //		Session session = sessionFactory.openSession();
 //		session.beginTransaction();
@@ -84,26 +79,25 @@ public class CustomerRepository {
 //		session.getTransaction().commit();
 //		session.close();
 //	}															//byNameMethod,UpdateFinished
-	
-	
-	public List<CustomerEntity> getByappointmentno(String appointmentno) {
 
-				Session session = sessionFactory.openSession();
-				session.beginTransaction();
-				Query q = session.createQuery("Select cus from CustomerEntity cus where cus.appointmentno = :Appointmentno");
-	
-				q.setParameter("Appointmentno", appointmentno);
-		
-				List<CustomerEntity> customers = q.list();
-		
-				session.getTransaction().commit();
-				session.close();
-		
-				
-				return customers;
-				
-		
-	}
+//	public List<CustomerEntity> getByappointmentno(String appointmentno) {
+//
+//				Session session = sessionFactory.openSession();
+//				session.beginTransaction();
+//				Query q = session.createQuery("Select cus from CustomerEntity cus where cus.appointmentno = :Appointmentno");
+//	
+//				q.setParameter("Appointmentno", appointmentno);
+//		
+//				List<CustomerEntity> customers = q.list();
+//		
+//				session.getTransaction().commit();
+//				session.close();
+//		
+//				
+//				return customers;
+//				
+//		
+//	}
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

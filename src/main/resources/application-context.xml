@@ -1,23 +1,25 @@
- <beans xmlns="http://www.springframework.org/schema/beans"
+
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="auto" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="cust" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/auto_db" />
+			value="jdbc:mysql://localhost:3306/Customer_db" />
 		<property name="username" value="root" />
 		<property name="password" value="root1234"></property>
 	</bean>
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="auto" />
+		<property name="dataSource" ref="cust" />
 		<property name="annotatedClasses">
 			<list>
 				<value>com.rab33.entity.CustomerEntity</value>
+				<value>com.rab33.entity.OrderStatusEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -33,4 +35,10 @@
 		class="com.rab33.repository.CustomerRepository">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+
+	<bean id="orderStatusRepository"
+		class="com.rab33.repository.OrderStatusRepository">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
 </beans>
