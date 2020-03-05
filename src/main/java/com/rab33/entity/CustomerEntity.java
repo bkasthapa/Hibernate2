@@ -79,4 +79,10 @@ public class CustomerEntity {
 		this.emailaddress = emailaddress;
 	}
 
+	@Override
+	public String toString() {
+		return "CustomerEntity [customerid=" + customerid + ", name=" + name + ", username=" + username + ", address="
+				+ address + ", phoneno=" + phoneno + ", emailaddress=" + emailaddress + "]";
+	}
+
 }

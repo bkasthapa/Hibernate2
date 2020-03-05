@@ -1,5 +1,8 @@
 package com.rab33.repository;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
@@ -18,22 +21,21 @@ public class OrderStatusRepository {
 		session.getTransaction().commit();
 		session.close();
 	}
+																			//Select method by id/ordertype
+	public OrderStatusEntity getOrderStatusByordertype(String ordertype) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
 
-//	public OrderStatusEntity getOrderStatusByordertype(String odtype) {
-//		Session session = sessionFactory.openSession();
-//		session.beginTransaction();
-//
-//		Query qu = session.createQuery("select o from OrderStatusEntity o where o.odtype=:odtype");
-//		qu.setParameter("odtype", odtype);
-//
-//		List<OrderStatusEntity> orderStatus = (List<OrderStatusEntity>) qu.list();
-//
-//		session.getTransaction().commit();
-//
-//		return orderStatus.get(0);
-//
-//	}
+		Query qu = session.createQuery("select o from OrderStatusEntity o where o.ordertype=:ordertype");
+		qu.setParameter("ordertype", ordertype);
 
+		List<OrderStatusEntity> orderStatus = (List<OrderStatusEntity>) qu.list();
+
+		session.getTransaction().commit();
+
+		return orderStatus.get(0);
+	}
+																			//select method/id/ordertype
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

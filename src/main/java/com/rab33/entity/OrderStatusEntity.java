@@ -95,4 +95,11 @@ public class OrderStatusEntity {
 		CustomerInfo = customerInfo;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderStatusEntity [order_id=" + order_id + ", order_number=" + order_number + ", ordertype=" + ordertype
+				+ ", paymenttype=" + paymenttype + ", shipmentdate=" + shipmentdate + ", shipmenttype=" + shipmenttype
+				+ ", CustomerInfo=" + CustomerInfo + "]";
+	}
+
 }
